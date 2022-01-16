@@ -1,0 +1,16 @@
+.content {
+    grid-area: content;
+    background-color: aliceblue;
+}
+
+.contentImage {
+    width: 100%;
+}
+
+.posts {
+
+}
+
+.postItem {
+    
+}
