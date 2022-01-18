@@ -1,16 +1,23 @@
-.content {
-    grid-area: content;
-    background-color: aliceblue;
+.myPostsContainer {
+    padding: 10px;
 }
 
-.contentImage {
-    width: 100%;
+.newPostContainer {
+    margin: 25px 0;
+}
+
+.inputPostText {
+    width: 50%;
+    height: 100px;
+    resize: none;
+    outline: none;
+    margin: 0 0 15px 0;
+}
+
+.addPostBtn {
+    cursor: pointer;
 }
 
 .posts {
 
-}
-
-.postItem {
-    
 }

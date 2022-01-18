@@ -1,34 +1,39 @@
 import React from 'react';
-import stl from './Profile.module.css';
+import stl from './MyPosts.module.css';
+import Post from "./Post/Post";
 
-const Profile = () => {
+
+const MyPosts = ({updateNewPostText, addPost, posts, newPostText}) => {
+
+    const addNewPost = () => {
+        addPost();
+    }
+
+    const postChanging = (event) => {
+        let text = event.target.value;
+        updateNewPostText(text);
+    }
+
     return (
-        <div className={stl.content}>
-            <div>
-                <img className={stl.contentImage}
-                     src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
-                     alt=""/>
-            </div>
-            <div>
-                ava + description
-            </div>
-            <div>
-                My posts
+        <div className={stl.myPostsContainer}>
+            <h2>My Posts</h2>
+            <div className={stl.newPostContainer}>
                 <div>
-                    New post
+                    <textarea
+                        className={stl.inputPostText}
+                        placeholder={'Enter your post...'}
+                        onChange={postChanging}
+                        value={newPostText}
+                    />
                 </div>
-                <div className={stl.posts}>
-                    Posts
-                    <div className={stl.postItem}>
-                        Post 1
-                    </div>
-                    <div className={stl.postItem}>
-                        Post 2
-                    </div>
-                </div>
+                <button className={stl.addPostBtn} onClick={addNewPost}>Add Post</button>
+            </div>
+            <div className={stl.posts}>
+                {posts.map(element => <Post message={element.post} likesAmount={element.likesAmount}/>)}
             </div>
         </div>
+
     );
 };
 
-export default Profile;
+export default MyPosts;

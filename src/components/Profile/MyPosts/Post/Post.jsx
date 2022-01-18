@@ -1,25 +1,19 @@
 import React from 'react';
-import stl from './MyPosts.module.css';
+import stl from './Post.module.css';
 
-const MyPosts = () => {
+const Post = ({message, likesAmount}) => {
     return (
-        <div>
-            <div>
-                <textarea name=""></textarea>
-                <button>Add</button>
+        <div className={stl.postItem}>
+            <div className={stl.container}>
+                <img src="https://image.freepik.com/free-vector/person-avatar-design_24877-38137.jpg" alt="user-avatar"/>
+                <div>{message}</div>
             </div>
-            <div className={stl.posts}>
-                Posts
-                <div className={stl.postItem}>
-                    Post 1
-                </div>
-                <div className={stl.postItem}>
-                    Post 2
-                </div>
+            <div className={stl.likeContainer}>
+                <span>Like</span>
+                {likesAmount}
             </div>
         </div>
-
     );
 };
 
-export default MyPosts;
+export default Post;

@@ -1,20 +1,7 @@
-.newPostContainer {
-    margin: 25px 0;
+.contentImage {
+    width: 100%;
 }
 
-.inputPostText {
-    width: 50%;
-    height: 100px;
-    resize: none;
-    outline: none;
-    display: block;
-    margin: 0 0 15px 0;
-}
-
-.addPostBtn {
-    cursor: pointer;
-}
-
-.posts {
-
+.descriptionBlock {
+    padding: 10px;
 }

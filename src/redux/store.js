@@ -9,11 +9,11 @@ let store = {
                 {id: 2, post: 'How are you?', likesAmount: 23},
                 {id: 3, post: 'How is it going?', likesAmount: 27},
             ],
-            postText: '',
+            newPostText: '',
         },
 
         dialogsPage: {
-            dialogs: [
+            users: [
                 {id: 1, name: 'Ira'},
                 {id: 2, name: 'Lera'},
                 {id: 3, name: 'Sasha'},

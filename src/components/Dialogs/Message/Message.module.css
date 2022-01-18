@@ -1,27 +1,8 @@
-.dialogs {
-    display: flex;
-    height: 100%;
-}
-
-.dialogsUsers {
-    flex: 0 1 20%;
-    border-right: 1px solid;
-    min-height: 100%;
-}
-
-.dialogUser {
-    padding: 5px;
-}
-
-.dialogUser a {
-    text-decoration: none;
-    color: #737373;
-}
-
-.messages {
-    flex: 0 1 80%;
-}
-
 .message {
-    padding: 5px;
+    padding: 5px 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: fit-content;
+    max-width: 400px;
+    margin: 0 0 10px;
 }
