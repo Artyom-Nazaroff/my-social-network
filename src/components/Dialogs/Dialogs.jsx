@@ -17,11 +17,11 @@ const Dialogs = ({users, messages, newMessageText, updateNewMessageText, sendMes
     return (
         <div className={stl.dialogs}>
             <div className={stl.dialogsUsers}>
-                {users.map(element => <DialogItem name={element.name} id={element.id}/>)}
+                {users.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)}
             </div>
             <div className={stl.messages}>
                 <div className={stl.messagesContainer}>
-                    {messages.map(element => <Message text={element.message}/>)}
+                    {messages.map(el => <Message key={el.id} id={el.id} text={el.message}/>)}
                 </div>
                 <div className={stl.newMessageContainer}>
                     <div>

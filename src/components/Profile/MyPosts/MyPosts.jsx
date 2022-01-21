@@ -29,7 +29,12 @@ const MyPosts = ({updateNewPostText, addPost, posts, newPostText}) => {
                 <button className={stl.addPostBtn} onClick={addNewPost}>Add Post</button>
             </div>
             <div className={stl.posts}>
-                {posts.map(element => <Post message={element.post} likesAmount={element.likesAmount}/>)}
+                {posts.map(el => <Post
+                    key={el.id}
+                    id={el.id}
+                    message={el.post}
+                    likesAmount={el.likesAmount}
+                />)}
             </div>
         </div>
 
