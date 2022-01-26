@@ -1,0 +1,9 @@
+.preloaderContainer {
+    padding: 50px 0;
+}
+
+.preloader {
+    width: 100px;
+    display: block;
+    margin: 0 auto;
+}
