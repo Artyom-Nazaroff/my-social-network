@@ -1,3 +1,28 @@
+.pageNumbersContainer {
+    padding: 5px;
+}
+
+.selectedPageNumber {
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 0 3px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: gold;
+    display: inline-block;
+}
+
+.pageNumber {
+    cursor: pointer;
+    margin: 0 5px;
+    padding: 0 3px;
+    border: 1px solid;
+    border-radius: 5px;
+    background-color: chocolate;
+    display: inline-block;
+}
+
 .container {
     display: flex;
     align-items: center;
