@@ -4,7 +4,7 @@ import {
     follow,
     setCurrentPage,
     setUsers,
-    setUsersTotalCount,
+    setTotalUsersCount,
     toggleIsFetching,
     unfollow
 } from "../../redux/usersReducer";
@@ -12,8 +12,8 @@ import axios from "axios";
 import Users from "./Users";
 import Preloader from "../_UI/Preloader/Preloader";
 
-// Внешняя контейнерная компонента
-class UsersContainer extends React.Component {
+// Внутренняя контейнерная компонента
+class UsersClassContainer extends React.Component {
 
     componentDidMount() {
         this.props.toggleIsFetching(true);
@@ -54,7 +54,7 @@ class UsersContainer extends React.Component {
 }
 
 
-// Внутренняя контейнерная компонента
+// Внешняя контейнерная компонента
 const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -87,8 +87,8 @@ const mapStateToProps = (state) => {
 //     }
 // }
 
-const UsersClassContainer = connect(mapStateToProps, {
-    follow, unfollow, setUsers, setCurrentPage, setUsersTotalCount, toggleIsFetching,
-})(UsersContainer);
+const UsersContainer = connect(mapStateToProps, {
+    follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching,
+})(UsersClassContainer);
 
-export default UsersClassContainer;
+export default UsersContainer;

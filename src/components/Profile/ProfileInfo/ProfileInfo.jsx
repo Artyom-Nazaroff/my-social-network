@@ -1,16 +1,37 @@
 import React from 'react';
 import stl from './ProfileInfo.module.css';
+import Preloader from "../../_UI/Preloader/Preloader";
+import mainPicture from '../../../assets/images/main-page-picture.webp'
 
-const ProfileInfo = () => {
+const ProfileInfo = ({profile}) => {
+    if (!profile) {
+        return <Preloader/>
+    }
     return (
         <div>
             <div>
                 <img className={stl.contentImage}
-                     src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
+                     src={mainPicture}
                      alt=""/>
             </div>
             <div className={stl.descriptionBlock}>
-                ava + description
+                <img className={stl.profilePhoto} src={profile.photos.large} alt=""/>
+                <div className={stl.profileDescription}>
+                    <h2 className={stl.userName}>{profile.fullName}</h2>
+                    <p className={stl.userStatus}><span>Status: </span>{profile.aboutMe}</p>
+                    <div className={stl.userContactsContainer}>
+                        <h3 className={stl.userContactsTitle}>Contacts:</h3>
+                        <ul className={stl.contactsList}>
+                            {Object.keys(profile.contacts).map(item => {
+                                return <li key={item}>
+                                    <span>{item}: </span>
+                                    {profile.contacts[item] ?
+                                        <a href={'#'}>{profile.contacts[item]}</a> : <em>Information is absent</em>}
+                                </li>
+                            })}
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
 
