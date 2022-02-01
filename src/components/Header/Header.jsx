@@ -1,12 +1,15 @@
 import React from 'react';
-import stl from './Header.module.css'
+import stl from './Header.module.css';
+import logoPicture from '../../assets/images/web-site-logo.png';
+import {NavLink} from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
     return (
         <header className={stl.header}>
-            <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2f/Logo_TV_2015.svg/1200px-Logo_TV_2015.svg.png"
-                alt=""/>
+            <img src={logoPicture} alt=""/>
+            <div className={stl.loginBlock}>
+                {props.isAuth ? props.login : <NavLink to={'login'}>Login</NavLink>}
+            </div>
         </header>
     );
 };

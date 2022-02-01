@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Profile from "../Profile";
+import Profile from "./Profile";
 import axios from "axios";
-import {setUserProfile} from "../../../redux/profileReducer";
+import {setUserProfile} from "../../redux/profileReducer";
 import {useMatch} from 'react-router-dom';
 
 
