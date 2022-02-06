@@ -2,10 +2,8 @@ import React from 'react';
 import stl from "./Users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 
 const Users = (props) => {
-
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
     let pages = [];
@@ -19,9 +17,7 @@ const Users = (props) => {
                 {pages.map(page => {
                     return <span
                         className={props.currentPage === page ? stl.selectedPageNumber : stl.pageNumber}
-                        onClick={() => {
-                            props.onPageChanged(page)
-                        }}
+                        onClick={() => {props.onPageChanged(page)}}
                     >{page}</span>
                 })}
             </div>
@@ -36,32 +32,14 @@ const Users = (props) => {
                             </NavLink>
                         </div>
                         {user.followed
-                            ? <button onClick={() => {
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
-                                    withCredentials: true,
-                                    headers: {
-                                        "API-KEY": "36f1d688-5002-41af-b997-2af3697c9c74",
-                                    }
-                                })
-                                    .then(response => {
-                                        if (response.data.resultCode === 0) {
-                                            props.unfollow(user.id);
-                                        }
-                                    });
-                                }}>Unfollow</button>
-                            : <button onClick={() => {
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {
-                                    withCredentials: true,
-                                    headers: {
-                                        "API-KEY": "36f1d688-5002-41af-b997-2af3697c9c74",
-                                    }
-                                })
-                                    .then(response => {
-                                        if (response.data.resultCode === 0) {
-                                            props.follow(user.id);
-                                        }
-                                    });
-                            }}>Follow</button>
+                            ?
+                            <button
+                                disabled={props.followingInProgress.some(id => id === user.id)}
+                                onClick={() => props.unfollowUser(user.id)}>Unfollow</button>
+                            :
+                            <button
+                                disabled={props.followingInProgress.some(id => id === user.id)}
+                                onClick={() => props.followUser(user.id)}>Follow</button>
                         }
                     </div>
                     <div className={stl.rightBlock}>
