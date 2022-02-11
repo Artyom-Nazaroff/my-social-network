@@ -3,7 +3,7 @@ import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 const Profile = ({profile}) => {
-    return (
+       return (
         <div>
             <ProfileInfo profile={profile}/>
             <MyPostsContainer/>

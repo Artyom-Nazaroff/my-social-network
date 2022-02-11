@@ -1,7 +1,8 @@
 import React from 'react';
 import stl from './ProfileInfo.module.css';
 import Preloader from "../../_UI/Preloader/Preloader";
-import mainPicture from '../../../assets/images/main-page-picture.webp'
+import mainPicture from '../../../assets/images/main-page-picture.webp';
+import profilePhoto from '../../../assets/images/user.png';
 
 const ProfileInfo = ({profile}) => {
     if (!profile) {
@@ -15,7 +16,8 @@ const ProfileInfo = ({profile}) => {
                      alt=""/>
             </div>
             <div className={stl.descriptionBlock}>
-                <img className={stl.profilePhoto} src={profile.photos.large} alt=""/>
+                <img className={stl.profilePhoto}
+                     src={profile.photos.large != null ? profile.photos.large : profilePhoto} alt=""/>
                 <div className={stl.profileDescription}>
                     <h2 className={stl.userName}>{profile.fullName}</h2>
                     <p className={stl.userStatus}><span>Status: </span>{profile.aboutMe}</p>

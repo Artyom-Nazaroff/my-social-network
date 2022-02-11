@@ -2,9 +2,10 @@ import React from 'react';
 import stl from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {Navigate} from "react-router-dom";
 
 
-const Dialogs = ({users, messages, newMessageText, updateNewMessageText, sendMessage}) => {
+const Dialogs = ({users, messages, newMessageText, updateNewMessageText, sendMessage, isAuth}) => {
     const sendNewMessage = () => {
         sendMessage();
     }
@@ -13,6 +14,8 @@ const Dialogs = ({users, messages, newMessageText, updateNewMessageText, sendMes
         let text = event.target.value;
         updateNewMessageText(text);
     }
+
+    if (!isAuth) return <Navigate to={'/login'}/>;
 
     return (
         <div className={stl.dialogs}>
