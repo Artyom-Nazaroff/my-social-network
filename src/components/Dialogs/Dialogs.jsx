@@ -2,29 +2,39 @@ import React from 'react';
 import stl from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import {Navigate} from "react-router-dom";
 
 
-const Dialogs = ({users, messages, newMessageText, updateNewMessageText, sendMessage, isAuth}) => {
+const Dialogs = (props) => {
+
     const sendNewMessage = () => {
-        sendMessage();
+        props.sendMessage();
     }
 
     const changeMessageText = (event) => {
         let text = event.target.value;
-        updateNewMessageText(text);
+        props.updateNewMessageText(text);
     }
-
-    if (!isAuth) return <Navigate to={'/login'}/>;
 
     return (
         <div className={stl.dialogs}>
             <div className={stl.dialogsUsers}>
-                {users.map(el => <DialogItem key={el.id} name={el.name} id={el.id}/>)}
+                {props.dialogsPage.users.map(el =>
+                    <DialogItem
+                        key={el.id}
+                        name={el.name}
+                        id={el.id}
+                    />
+                )}
             </div>
             <div className={stl.messages}>
                 <div className={stl.messagesContainer}>
-                    {messages.map(el => <Message key={el.id} id={el.id} text={el.message}/>)}
+                    {props.dialogsPage.messages.map(el =>
+                        <Message
+                            key={el.id}
+                            id={el.id}
+                            text={el.message}
+                        />
+                    )}
                 </div>
                 <div className={stl.newMessageContainer}>
                     <div>
@@ -32,10 +42,15 @@ const Dialogs = ({users, messages, newMessageText, updateNewMessageText, sendMes
                             className={stl.inputMessageText}
                             placeholder={'Enter your message...'}
                             onChange={changeMessageText}
-                            value={newMessageText}
+                            value={props.dialogsPage.newMessageText}
                         />
                     </div>
-                    <button className={stl.sendMessageBtn} onClick={sendNewMessage}>Send message</button>
+                    <button
+                        className={stl.sendMessageBtn}
+                        onClick={sendNewMessage}
+                    >
+                        Send message
+                    </button>
                 </div>
             </div>
         </div>
