@@ -7,8 +7,10 @@ import {
 } from "../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../_UI/Preloader/Preloader";
+import {compose} from "redux";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
-// Внутренняя контейнерная компонента
+
 class UsersClassContainer extends React.Component {
 
     componentDidMount() {
@@ -38,8 +40,6 @@ class UsersClassContainer extends React.Component {
     }
 }
 
-
-// Внешняя контейнерная компонента
 const mapStateToProps = (state) => {
     return {
         users: state.usersPage.users,
@@ -51,14 +51,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-const UsersContainer = connect(mapStateToProps, {
-    follow,
-    unfollow,
-    setCurrentPage,
-    toggleFollowingProgress,
-    getUsers,
-    followUser,
-    unfollowUser
-})(UsersClassContainer);
-
-export default UsersContainer;
+export default compose(
+    connect(mapStateToProps,
+        {follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers, followUser, unfollowUser}),
+    withAuthRedirect
+)(UsersClassContainer);
