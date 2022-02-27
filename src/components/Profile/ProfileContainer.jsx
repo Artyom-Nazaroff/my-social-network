@@ -29,6 +29,5 @@ const mapStateToProps = state => ({
 
 export default compose(
     connect(mapStateToProps, {getUserProfile}),
-    withUrlMatch,
-    withAuthRedirect
+    withUrlMatch
 )(ProfileClassContainer);

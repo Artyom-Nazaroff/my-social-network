@@ -3,6 +3,7 @@ import stl from './ProfileInfo.module.css';
 import Preloader from "../../_UI/Preloader/Preloader";
 import mainPicture from '../../../assets/images/main-page-picture.webp';
 import profilePhoto from '../../../assets/images/user.png';
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = ({profile}) => {
     if (!profile) {
@@ -10,17 +11,18 @@ const ProfileInfo = ({profile}) => {
     }
     return (
         <div>
-            <div>
-                <img className={stl.contentImage}
-                     src={mainPicture}
-                     alt=""/>
-            </div>
+            {/*<div>*/}
+            {/*    <img className={stl.contentImage}*/}
+            {/*         src={mainPicture}*/}
+            {/*         alt=""/>*/}
+            {/*</div>*/}
             <div className={stl.descriptionBlock}>
                 <img className={stl.profilePhoto}
                      src={profile.photos.large != null ? profile.photos.large : profilePhoto} alt=""/>
                 <div className={stl.profileDescription}>
                     <h2 className={stl.userName}>{profile.fullName}</h2>
                     <p className={stl.userStatus}><span>Status: </span>{profile.aboutMe}</p>
+                    <ProfileStatus status={'Hello motherfucker!'}/>
                     <div className={stl.userContactsContainer}>
                         <h3 className={stl.userContactsTitle}>Contacts:</h3>
                         <ul className={stl.contactsList}>
