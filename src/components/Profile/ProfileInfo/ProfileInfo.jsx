@@ -5,7 +5,7 @@ import mainPicture from '../../../assets/images/main-page-picture.webp';
 import profilePhoto from '../../../assets/images/user.png';
 import ProfileStatus from "./ProfileStatus";
 
-const ProfileInfo = ({profile}) => {
+const ProfileInfo = ({profile, status, updateStatus}) => {
     if (!profile) {
         return <Preloader/>
     }
@@ -22,7 +22,10 @@ const ProfileInfo = ({profile}) => {
                 <div className={stl.profileDescription}>
                     <h2 className={stl.userName}>{profile.fullName}</h2>
                     <p className={stl.userStatus}><span>Status: </span>{profile.aboutMe}</p>
-                    <ProfileStatus status={'Hello motherfucker!'}/>
+                    <ProfileStatus
+                        status={status}
+                        updateStatus={updateStatus}
+                    />
                     <div className={stl.userContactsContainer}>
                         <h3 className={stl.userContactsTitle}>Contacts:</h3>
                         <ul className={stl.contactsList}>
