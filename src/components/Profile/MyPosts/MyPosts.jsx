@@ -1,33 +1,22 @@
 import React from 'react';
 import stl from './MyPosts.module.css';
 import Post from "./Post/Post";
+import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators/validators";
+import {Textarea} from "../../_UI/FormsControls/FormsControl";
 
+const maxLength10 = maxLengthCreator(10);
 
-const MyPosts = ({updateNewPostText, addPost, posts, newPostText}) => {
+const MyPosts = ({addPost, posts}) => {
 
-    const addNewPost = () => {
-        addPost();
-    }
-
-    const postChanging = (event) => {
-        let text = event.target.value;
-        updateNewPostText(text);
+    const addNewPost = (values) => {
+        addPost(values.newPostText);
     }
 
     return (
         <div className={stl.myPostsContainer}>
             <h2>My Posts</h2>
-            <div className={stl.newPostContainer}>
-                <div>
-                    <textarea
-                        className={stl.inputPostText}
-                        placeholder={'Enter your post...'}
-                        onChange={postChanging}
-                        value={newPostText}
-                    />
-                </div>
-                <button className={stl.addPostBtn} onClick={addNewPost}>Add Post</button>
-            </div>
+            <PostFormRedux onSubmit={addNewPost}/>
             <div className={stl.posts}>
                 {posts.map(el => <Post
                     key={el.id}
@@ -40,5 +29,24 @@ const MyPosts = ({updateNewPostText, addPost, posts, newPostText}) => {
 
     );
 };
+
+const NewPostForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit} className={stl.newPostContainer}>
+            <div>
+                <Field
+                    component={Textarea}
+                    name={'newPostText'}
+                    validate={[required, maxLength10]}
+                    className={stl.inputPostText}
+                    placeholder={'Enter your post...'}
+                />
+            </div>
+            <button className={stl.addPostBtn}>Add Post</button>
+        </form>
+    )
+}
+
+const PostFormRedux = reduxForm({form: 'postTextForm'})(NewPostForm);
 
 export default MyPosts;

@@ -2,17 +2,16 @@ import React from 'react';
 import stl from './Dialogs.module.css';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import {Field, reduxForm} from "redux-form";
+import {Textarea} from "../_UI/FormsControls/FormsControl";
+import {required, maxLengthCreator} from "../../utils/validators/validators";
 
+const maxLength20 = maxLengthCreator(20);
 
 const Dialogs = (props) => {
 
-    const sendNewMessage = () => {
-        props.sendMessage();
-    }
-
-    const changeMessageText = (event) => {
-        let text = event.target.value;
-        props.updateNewMessageText(text);
+    const addNewMessage = (values) => {
+        props.sendMessage(values.newMessageText);
     }
 
     return (
@@ -36,25 +35,29 @@ const Dialogs = (props) => {
                         />
                     )}
                 </div>
-                <div className={stl.newMessageContainer}>
-                    <div>
-                        <textarea
-                            className={stl.inputMessageText}
-                            placeholder={'Enter your message...'}
-                            onChange={changeMessageText}
-                            value={props.dialogsPage.newMessageText}
-                        />
-                    </div>
-                    <button
-                        className={stl.sendMessageBtn}
-                        onClick={sendNewMessage}
-                    >
-                        Send message
-                    </button>
-                </div>
+                <MessageFormRedux onSubmit={addNewMessage}/>
             </div>
         </div>
     );
 };
+
+const MessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit} className={stl.newMessageContainer}>
+            <div>
+                <Field
+                    component={Textarea}
+                    name={'newMessageText'}
+                    validate={[required, maxLength20]}
+                    className={stl.inputMessageText}
+                    placeholder={'Enter your message...'}
+                />
+            </div>
+            <button className={stl.sendMessageBtn}>Send message</button>
+        </form>
+    )
+}
+
+const MessageFormRedux = reduxForm({form: 'dialogMessageForm'})(MessageForm);
 
 export default Dialogs;

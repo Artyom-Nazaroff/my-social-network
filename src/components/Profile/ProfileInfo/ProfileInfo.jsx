@@ -21,11 +21,11 @@ const ProfileInfo = ({profile, status, updateStatus}) => {
                      src={profile.photos.large != null ? profile.photos.large : profilePhoto} alt=""/>
                 <div className={stl.profileDescription}>
                     <h2 className={stl.userName}>{profile.fullName}</h2>
-                    <p className={stl.userStatus}><span>Status: </span>{profile.aboutMe}</p>
                     <ProfileStatus
                         status={status}
                         updateStatus={updateStatus}
                     />
+                    <p className={stl.userStatus}><span>About me: </span>{profile.aboutMe}</p>
                     <div className={stl.userContactsContainer}>
                         <h3 className={stl.userContactsTitle}>Contacts:</h3>
                         <ul className={stl.contactsList}>

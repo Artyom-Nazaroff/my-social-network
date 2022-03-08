@@ -13,23 +13,16 @@ const initialState = {
         {id: 2, message: 'What is your name?'},
         {id: 3, message: 'I live in the beautiful place. KNKMLlmgs rlmrelber erlbmerblerbm erblmerlbmer'},
     ],
-    newMessageText: '',
 }
 
 const dialogsReducer = (state = initialState, action) => {
 
     switch (action.type) {
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.body,
-            }
         case SEND_MESSAGE:
-            const body = state.newMessageText;
+            const body = action.newMessageText;
             return {
                 ...state,
                 messages: [...state.messages, {id: 4, message: body}],
-                newMessageText: '',
             }
         default:
             return state;
@@ -38,5 +31,4 @@ const dialogsReducer = (state = initialState, action) => {
 
 export default dialogsReducer;
 
-export const sendMessage = () => ({type: SEND_MESSAGE});
-export const updateNewMessageText = text => ({type: UPDATE_NEW_MESSAGE_TEXT, body: text});
+export const sendMessage = (newMessageText) => ({type: SEND_MESSAGE, newMessageText});
