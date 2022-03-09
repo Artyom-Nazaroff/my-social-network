@@ -1,31 +1,30 @@
 import React from "react";
 import stl from './FormsControl.module.css';
 
-const FormControl = ({input, meta, children, ...props}) => {
+export const Textarea = ({input, meta, ...props}) => {
+
     const hasError = meta.touched && meta.error;
 
     return (
         <div className={hasError ? stl.formControl + ' ' + stl.error : stl.formControl}>
             <div>
-                {children}
+                <textarea {...input} {...props} />
             </div>
             {hasError && <span>{meta.error}</span>}
         </div>
     )
 }
 
-export const Textarea = ({input, meta, children, ...props}) => {
-    return (
-        <FormControl {...props}>
-            <textarea {...input} {...props} />
-        </FormControl>
-    )
-}
+export const Input = ({input, meta, ...props}) => {
 
-export const Input = ({input, meta, children, ...props}) => {
+    const hasError = meta.touched && meta.error;
+
     return (
-        <FormControl {...props}>
-            <input {...input} {...props} />
-        </FormControl>
+        <div className={hasError ? stl.formControl + ' ' + stl.error : stl.formControl}>
+            <div>
+                <input {...input} {...props} />
+            </div>
+            {hasError && <span>{meta.error}</span>}
+        </div>
     )
 }
