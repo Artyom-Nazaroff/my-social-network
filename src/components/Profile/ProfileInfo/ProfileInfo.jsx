@@ -1,7 +1,6 @@
 import React from 'react';
 import stl from './ProfileInfo.module.css';
 import Preloader from "../../_UI/Preloader/Preloader";
-import mainPicture from '../../../assets/images/main-page-picture.webp';
 import profilePhoto from '../../../assets/images/user.png';
 import ProfileStatus from "./ProfileStatus";
 
@@ -11,11 +10,6 @@ const ProfileInfo = ({profile, status, updateStatus}) => {
     }
     return (
         <div>
-            {/*<div>*/}
-            {/*    <img className={stl.contentImage}*/}
-            {/*         src={mainPicture}*/}
-            {/*         alt=""/>*/}
-            {/*</div>*/}
             <div className={stl.descriptionBlock}>
                 <img className={stl.profilePhoto}
                      src={profile.photos.large != null ? profile.photos.large : profilePhoto} alt=""/>

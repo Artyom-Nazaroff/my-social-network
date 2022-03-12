@@ -35,6 +35,7 @@ const LoginForm = (props) => {
                     component={Input}
                 /> Remember me
             </div>
+            {props.error && <div className={stl.formSummaryError}>{props.error}</div>}
             <div>
                 <button>Login</button>
             </div>
