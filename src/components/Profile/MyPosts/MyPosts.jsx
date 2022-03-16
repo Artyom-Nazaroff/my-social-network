@@ -8,7 +8,6 @@ import {Textarea} from "../../_UI/FormsControls/FormsControl";
 const maxLength10 = maxLengthCreator(10);
 
 const MyPosts = ({addPost, posts}) => {
-
     const addNewPost = (values) => {
         addPost(values.newPostText);
     }
