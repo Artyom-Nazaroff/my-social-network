@@ -39,7 +39,7 @@ class ProfileStatus extends React.Component {
                 {!this.state.editMode
                     ?
                     <div>
-                        <span>Status: </span>
+
                         <span
                             style={{cursor: 'pointer'}}
                             onClick={this.activateEditMode}
@@ -49,7 +49,7 @@ class ProfileStatus extends React.Component {
                     </div>
                     :
                     <div>
-                        <span>Status: </span>
+
                         <input
                             type="text"
                             autoFocus={true}
