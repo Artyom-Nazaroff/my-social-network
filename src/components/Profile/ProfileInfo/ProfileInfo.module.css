@@ -54,3 +54,13 @@
 .contactsList li a {
     color: dimgrey;
 }
+
+.contact {
+    padding-left: 10px;
+}
+
+.formSummaryError {
+    border: 2px solid black;
+    padding: 5px;
+    background-color: red;
+}

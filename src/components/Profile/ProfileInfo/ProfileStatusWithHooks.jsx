@@ -36,7 +36,7 @@ const ProfileStatusWithHooks = (props) => {
                 </div>
                 :
                 <div>
-                    <span>Status: </span>
+                    <b>Status: </b>
                     <input
                         type="text"
                         autoFocus={true}
