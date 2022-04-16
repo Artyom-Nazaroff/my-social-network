@@ -9,26 +9,31 @@ import {Navigate} from "react-router-dom";
 
 
 const Login = (props) => {
-    const onSubmit = ({email, password, rememberMe}) => {
-        props.login(email, password, rememberMe);
+    const onSubmit = ({email, password, rememberMe, captcha}) => {
+        props.login(email, password, rememberMe, captcha);
     }
 
     if (props.isAuth) return <Navigate to={'/profile'}/>
     return (
         <div>
             <h1>Login</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
+            <LoginReduxForm
+                onSubmit={onSubmit}
+                captchaUrl={props.captchaUrl}
+            />
         </div>
     );
 };
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit, error, captchaUrl}) => {
     return (
-        <form onSubmit={props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
             {createField('Email', 'email', [required], Input)}
             {createField('Password', 'password', [required], Input, {type: 'password'})}
             {createField(null, 'rememberMe', [], Input, {type: 'checkbox'}, 'remember me')}
-            {props.error && <div className={stl.formSummaryError}>{props.error}</div>}
+            {captchaUrl && <img src={captchaUrl} alt={''}/>}
+            {captchaUrl && createField('Symbols from image', 'captcha', [required], Input)}
+            {error && <div className={stl.formSummaryError}>{error}</div>}
             <div>
                 <button>Login</button>
             </div>
@@ -39,6 +44,7 @@ const LoginForm = (props) => {
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
 const mapStateToProps = state => ({
+    captchaUrl: state.auth.captchaUrl,
     isAuth: state.auth.isAuth,
 });
 
