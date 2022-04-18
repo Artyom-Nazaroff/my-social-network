@@ -7,7 +7,7 @@ import HeaderContainer from "./components/Header/HeaderContainer";
 import Login from "./components/Login/Login";
 import {Component} from "react";
 import {connect} from "react-redux";
-import {initializeApp} from "./redux/appReducer";
+import {initializeApp} from "./redux/appReducer.ts";
 import Preloader from "./components/_UI/Preloader/Preloader";
 
 // import DialogsContainer from "./components/Dialogs/DialogsContainer";
@@ -31,11 +31,13 @@ class App extends Component {
                 <div className={'app-content'}>
                     <Suspense fallback={<div>Loading...</div>}>
                         <Routes>
+                            <Route path={'/'} element={<ProfileContainer/>}/>
                             <Route path={'login'} element={<Login/>}/>
                             <Route path={'profile'} element={<ProfileContainer/>}/>
                             <Route path={'profile/:userId'} element={<ProfileContainer/>}/>
                             <Route path={'messages'} element={<DialogsContainer/>}/>
                             <Route path={'users'} element={<UsersContainer/>}/>
+                            <Route path={'*'} element={<div>404 NOT FOUND</div>}/>
                         </Routes>
                     </Suspense>
                 </div>

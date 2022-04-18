@@ -4,7 +4,7 @@ import stl from "../_UI/FormsControls/FormsControl.module.css";
 import {createField, Input} from "../_UI/FormsControls/FormsControl";
 import {required} from "../../utils/validators/validators";
 import {connect} from "react-redux";
-import {login} from "../../redux/authReducer";
+import {login} from "../../redux/authReducer.ts";
 import {Navigate} from "react-router-dom";
 
 
